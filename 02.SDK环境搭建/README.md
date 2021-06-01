@@ -1,6 +1,6 @@
 ## SDK环境搭建
 
-这里主要针对Windows环境，Linux环境也以此类推。下是环境搭建所需要的工具：
+这里主要针对Windows环境，Linux环境也以此类推。以下是环境搭建所需要的工具：
 
 * CMake：CMake 是众多 Make 工具的一种，具有跨平台，跨编译器等特性，是一种非常实用的工具
 * Toolchain：交叉编译器 Toolchain 是用于调试开发板的工具和相关库组合起来的工具链
@@ -165,7 +165,7 @@ PS F:\K210_ENV\SDK\kendryte-standalone-sdk-develop\build> ls
 
 <img src="./img/07.test_env3.png" style="zoom:80%;" />
 
-我这里是COM6。接下来输入命令，将hello_world.bin文件通过CMO6端口以1500000波特率烧写到K210开发板中：
+我这里是COM6。接下来输入命令，将hello_world.bin文件通过COM6端口以1500000波特率烧写到K210开发板中：
 
 ```powershell
 kflash hello_world.bin -p COM6 -b 1500000
