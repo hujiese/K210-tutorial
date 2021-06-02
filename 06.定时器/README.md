@@ -71,7 +71,7 @@ size_t timer_set_interval(timer_device_number_t timer_number, timer_channel_numb
 ```
 
 * 参数1为定时器号
-* 参数2为定时器通道，每路定时器可设置五个通道：
+* 参数2为定时器通道，每路定时器可设置通道如下：
 
  ```c
  typedef enum _timer_channel_number
