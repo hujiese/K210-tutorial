@@ -244,7 +244,3 @@ kflash .\uart_int.bin -p COM6 -b 1500000
 
 
 
-### 三、UART DMA中断
-
-这部分内容在学习K210 DMA之后会介绍，这是一种更加高效的UART方式。
-
