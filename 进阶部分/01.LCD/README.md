@@ -184,3 +184,43 @@ kflash .\lcd.bin -p COM25 -b 1500000
 
 <img src="./img/03.test.jpg" style="zoom:67%;" />
 
+### 附录
+
+目前使用的开发板是亚博智能的K210开发板，虽然理论上也可以用SIPEED的开发板来做，但笔者多次实验发现，这两款板子的LCD代码是不兼容的，本次实验在LCD上显示图片，但将本次实验代码原封不动烧写到SIPEED系列开发板中，LCD虽然能显示，但颜色是黑白的，不是我们想要的颜色，所以还需要做一些修改：
+
+```c
+/* 初始化LCD，设置显示方向和启动显示 */
+void lcd_init(void)
+{
+    uint8_t data = 0;
+    /* 硬件初始化 */
+    tft_hard_init();
+    /* 重置LCD */
+    tft_write_command(SOFTWARE_RESET);
+    usleep(100000);
+    /* 关闭睡眠模式 */
+    tft_write_command(SLEEP_OFF);
+    usleep(100000);
+    /* 设置像素格式：65K, 16bit/pixel */
+    tft_write_command(PIXEL_FORMAT_SET);
+    data = 0x55;  /* 0101 0101*/
+    tft_write_byte(&data, 1);
+    /* 打开显示反转 */
+    tft_write_command(INVERSION_DISPLAY_ON);
+    /* 设置LCD显示方向 */
+    lcd_set_direction(DIR_YX_LRUD);
+    /* 使能显示 */
+    tft_write_command(DISPLAY_ON);
+    /* 清空显示 */
+    lcd_clear(WHITE);
+}
+```
+
+做法就是将上面的LCD初始代码中的：
+
+```c
+/* 打开显示反转 */
+tft_write_command(INVERSION_DISPLAY_ON);
+```
+
+这一行注释掉。这样代码就可以在SIPEED开发板中跑通。
